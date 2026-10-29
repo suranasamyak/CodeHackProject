@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ResourceLoop
 
 **Access More. Own Less. Share Smarter.**
@@ -61,3 +62,6 @@ npm run start
 - **Backend Authorization**: Verified role permissions for students, owners, institution managers, and administrators.
 - **Rule Hardening**: Firestore rules enforcing document validation, identity parity (`request.auth.uid`), and immutability.
 - **Safe AI Boundary**: Gemini API runs strictly on the server-side proxy; secrets are never passed to the browser, and AI outputs are validated against real catalog inventory.
+=======
+# CodeHackProject
+>>>>>>> 475352eca17d61db126d589ce28f095c85cf063d
