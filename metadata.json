@@ -1,0 +1,6 @@
+{
+  "name": "ResourceLoop",
+  "description": "AI-powered equipment rental, resource sharing and institutional asset utilisation platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

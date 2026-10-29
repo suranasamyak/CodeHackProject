@@ -1,0 +1,1507 @@
+# MASTER PROMPT: RESOURCELOOP
+
+## AI-Powered Resource Sharing, Equipment Rental and Institutional Resource Network
+
+Act as a senior full-stack software engineer, UI/UX designer, database architect, AI engineer, security engineer and hackathon product developer.
+
+Build a complete, professional, responsive, fully functional, full-stack web application named **ResourceLoop**.
+
+Do not create only a landing page, static UI, frontend mockup or collection of disconnected screens. Build a working application with a real backend, persistent database, authentication, role-based permissions, API integration, booking management, equipment-request workflows and operational dashboards.
+
+The application must be suitable for a 48-hour hackathon and demonstrate the complete resource-sharing lifecycle.
+
+Generate the project files in the implementation order specified in this prompt. Create and connect the files, install the required dependencies, run the application, test the workflows and fix build errors.
+
+Do not stop after generating the frontend.
+
+---
+
+# 1. PROJECT IDENTITY
+
+Project name: ResourceLoop
+
+Tagline: Access More. Own Less. Share Smarter.
+
+Product category: AI-powered equipment rental, resource sharing and institutional asset utilisation platform.
+
+Primary target users:
+
+* Engineering students.
+* College project teams.
+* Researchers.
+* College laboratories.
+* Faculty members.
+* Makerspaces.
+* Resource owners.
+* Equipment rental providers.
+* Participating institutions.
+* Administrators.
+
+Primary problem:
+
+Students and project teams often require expensive instruments, tools and equipment that are unavailable in their colleges or difficult to find at nearby rental shops. Meanwhile, other institutions, laboratories, makerspaces and equipment owners may possess resources that remain unused.
+
+Existing booking systems do not necessarily address the entire process of resource discovery, unmet equipment demand, eligibility verification, fair allocation, condition documentation, incident management and accountable returns.
+
+ResourceLoop should help users discover available resources, request missing equipment, find potential providers, book eligible resources, document collection and return, and help institutions understand unmet demand.
+
+## Core differentiator
+
+The platform must combine these capabilities in one connected application:
+
+1. Resource marketplace.
+2. SmartFind equipment discovery and request portal.
+3. AI-assisted resource and alternative matching.
+4. Cross-institution resource sharing.
+5. Digital Trust Passport.
+6. FairShare allocation.
+7. Booking and approval management.
+8. Digital check-in and check-out.
+9. Before-and-after condition reports.
+10. Damage and incident reporting.
+11. Resource maintenance management.
+12. Resource utilisation and demand analytics.
+13. Auditable activity history.
+
+Do not claim that these individual features are entirely unprecedented. Differentiate the product through its integrated end-to-end workflow.
+
+---
+
+# 2. REQUIRED TECHNOLOGY STACK
+
+Use the following technologies.
+
+Frontend:
+
+* React.
+* TypeScript.
+* Vite if supported by the Google AI Studio runtime.
+* Tailwind CSS.
+* shadcn/ui or an equivalent accessible component library.
+* Lucide React icons.
+* Recharts for analytics.
+* Framer Motion for subtle animations.
+
+Backend:
+
+* Node.js server-side runtime supported by Google AI Studio.
+* TypeScript where supported.
+* REST API endpoints.
+* Server-side business logic.
+* Input validation.
+* Authentication and authorisation middleware.
+* Consistent error handling.
+
+Database:
+
+* Firebase Authentication.
+* Cloud Firestore.
+* Firebase Storage for condition-report photographs and resource images, if the integration is available and configured.
+
+AI:
+
+* Google Gemini API.
+* Use the server-side Gemini API integration available in Google AI Studio.
+* Read the API key from the server-side GEMINI_API_KEY secret.
+* Use structured JSON responses when appropriate.
+* Validate all AI outputs before using them.
+
+Deployment:
+
+* Google AI Studio preview during development.
+* Google Cloud Run when deployment is supported and configured.
+* GitHub integration for source control, if available.
+
+IMPORTANT:
+Use the actual server-side capabilities supported by Google AI Studio. Do not invent backend services or pretend an integration is connected when it is not.
+
+If Google AI Studio offers to enable Firebase, complete the required integration and configure authentication and Firestore.
+
+Do not add Supabase as a second database unless there is a clear technical reason. Firebase should be the primary backend to avoid unnecessary complexity.
+
+---
+
+# 3. FILE CREATION ORDER
+
+Create the following files in this order, adapting only when the Google AI Studio runtime requires a different structure.
+
+Keep frontend code separate from server-side business logic.
+
+Do not put every feature into one large file.
+
+## PHASE A: PROJECT CONFIGURATION
+
+1. package.json
+
+   * Define project scripts.
+   * Include required dependencies.
+   * Include development and production scripts appropriate to the runtime.
+
+2. tsconfig.json
+
+   * Configure TypeScript appropriately.
+
+3. vite.config.ts
+
+   * Configure Vite if applicable.
+
+4. index.html
+
+   * Configure the application entry point and metadata.
+
+5. .gitignore
+
+   * Exclude node_modules, build output, environment files and local secrets.
+
+6. README.md
+
+   * Explain setup, features, environment configuration, testing and deployment.
+
+7. .env.example
+
+   * Document the names of required environment variables.
+   * Never include real API keys or passwords.
+
+If Google AI Studio already supplies configuration files, modify the existing files rather than creating conflicting duplicates.
+
+## PHASE B: FRONTEND ENTRY AND DESIGN SYSTEM
+
+8. src/main.tsx
+
+   * Initialise React.
+
+9. src/App.tsx
+
+   * Configure application routing and shared layouts.
+
+10. src/index.css
+
+* Define global styles, CSS variables, typography, responsive behaviour and theme.
+
+11. src/types/index.ts
+
+* Define shared TypeScript interfaces and enums.
+
+12. src/lib/utils.ts
+
+* Add reusable formatting, validation and helper functions.
+
+13. src/lib/firebase.ts
+
+* Initialise the Firebase client using the configuration supplied by the Firebase integration.
+* Never put server secrets in this file.
+
+14. src/lib/api-client.ts
+
+* Create a reusable frontend API client.
+* Handle loading states, authentication tokens, errors and API responses.
+
+15. src/lib/formatters.ts
+
+* Format INR currency, dates, times and resource statuses.
+
+## PHASE C: SHARED FRONTEND COMPONENTS
+
+16. src/components/layout/AppLayout.tsx
+17. src/components/layout/Sidebar.tsx
+18. src/components/layout/Topbar.tsx
+19. src/components/layout/MobileNavigation.tsx
+20. src/components/layout/PageHeader.tsx
+21. src/components/ui/StatusBadge.tsx
+22. src/components/ui/EmptyState.tsx
+23. src/components/ui/LoadingState.tsx
+24. src/components/ui/ErrorState.tsx
+25. src/components/ui/ConfirmDialog.tsx
+26. src/components/ui/SearchInput.tsx
+27. src/components/ui/StatCard.tsx
+28. src/components/resources/ResourceCard.tsx
+29. src/components/resources/ResourceFilters.tsx
+30. src/components/resources/ResourceForm.tsx
+31. src/components/bookings/BookingCard.tsx
+32. src/components/bookings/BookingTimeline.tsx
+33. src/components/requests/EquipmentRequestCard.tsx
+34. src/components/condition/ConditionChecklist.tsx
+35. src/components/condition/PhotoUploader.tsx
+36. src/components/notifications/NotificationCenter.tsx
+
+All components must use real application state and appropriate props.
+
+Do not build buttons that merely look interactive.
+
+## PHASE D: AUTHENTICATION AND USER EXPERIENCE
+
+37. src/pages/LandingPage.tsx
+38. src/pages/auth/LoginPage.tsx
+39. src/pages/auth/RegisterPage.tsx
+40. src/pages/auth/CompleteProfilePage.tsx
+41. src/pages/DashboardPage.tsx
+
+Implement:
+
+* Registration.
+* Login.
+* Logout.
+* Session persistence.
+* Google sign-in if supported by Firebase configuration.
+* User profile editing.
+* Role selection where appropriate.
+* Authentication state loading.
+* Protected routes.
+* Helpful validation messages.
+
+Use Firebase Authentication for actual user authentication.
+
+Do not trust a role sent by the browser. Determine the user's authorised role using verified backend data and enforce permissions server-side.
+
+A user must not be able to become an administrator by modifying frontend state.
+
+## PHASE E: RESOURCE MARKETPLACE
+
+42. src/pages/resources/ExploreResourcesPage.tsx
+43. src/pages/resources/ResourceDetailsPage.tsx
+44. src/pages/resources/CreateResourcePage.tsx
+45. src/pages/resources/EditResourcePage.tsx
+46. src/pages/resources/MyResourcesPage.tsx
+47. src/pages/resources/ResourceAvailabilityPage.tsx
+
+Features:
+
+* Search resources.
+* Filter by category.
+* Filter by location.
+* Filter by price.
+* Filter by date and availability.
+* Filter by institution.
+* Filter by eligibility requirements.
+* Sort by relevance, price and distance when location data is available.
+* Display equipment specifications.
+* Display condition and maintenance status.
+* Display rental terms.
+* Display security deposits.
+* Display resource owner information.
+* Display available time slots.
+* Display training and authorisation requirements.
+
+Support categories such as:
+
+* Electronics.
+* Photography.
+* Computing.
+* Audio and video.
+* Robotics.
+* Engineering tools.
+* Laboratory instruments.
+* Fabrication.
+* Event equipment.
+* Outdoor equipment.
+* Rooms and workspaces.
+* Other specialised equipment.
+
+Do not hardcode every resource into the production application. Read resources from Firestore.
+
+You may seed clearly labelled fictional demonstration data for the hackathon.
+
+## PHASE F: SMARTFIND EQUIPMENT REQUEST SYSTEM
+
+48. src/pages/smartfind/SmartFindPage.tsx
+49. src/pages/smartfind/CreateEquipmentRequestPage.tsx
+50. src/pages/smartfind/EquipmentRequestDetailsPage.tsx
+51. src/pages/smartfind/MyEquipmentRequestsPage.tsx
+52. src/pages/smartfind/CommunityRequestsPage.tsx
+53. src/pages/smartfind/AlternativeMatchesPage.tsx
+54. src/components/smartfind/EquipmentRequestForm.tsx
+55. src/components/smartfind/MatchResultCard.tsx
+
+This is one of the most important features.
+
+A student must be able to request equipment even when it is not listed on the platform.
+
+Each request should support:
+
+* Equipment name.
+* Equipment category.
+* Technical specifications.
+* Intended project or purpose.
+* Quantity.
+* Required start date.
+* Required end date.
+* Maximum budget.
+* Preferred location.
+* Maximum acceptable distance, when relevant.
+* Required training or qualification.
+* Urgency.
+* Additional notes.
+* Request status.
+
+Use statuses such as:
+
+* Draft.
+* Open.
+* Searching.
+* Potential Match Found.
+* Awaiting Provider Confirmation.
+* Match Confirmed.
+* Booking Requested.
+* Fulfilled.
+* Cancelled.
+* Closed Without Match.
+
+Workflow:
+
+1. A student searches the marketplace.
+2. The system checks matching listings.
+3. If no suitable resource is found, the student creates an equipment request.
+4. The backend stores the request.
+5. The matching service searches registered resources and participating providers.
+6. The student sees possible matches and alternative equipment.
+7. The student can request a booking from a suitable provider.
+8. The provider must confirm actual availability.
+9. The booking follows the normal eligibility and approval process.
+10. The student receives a notification when the status changes.
+
+If no match exists, preserve the request and display an honest no-match message.
+
+Do not fabricate nearby providers, rental shops, prices, inventory, availability or contact details.
+
+Do not automatically claim that an instrument is available simply because it appears in an external search result.
+
+If an external provider discovery API is not configured, use registered platform resources and clearly label external discovery as unavailable.
+
+Do not scrape websites without authorisation.
+
+## PHASE G: AI RESOURCE MATCHER
+
+56. src/pages/ai/ResourceAssistantPage.tsx
+57. src/components/ai/ResourceChatPanel.tsx
+58. src/components/ai/RecommendationList.tsx
+59. server/src/services/gemini.service.ts
+60. server/src/services/resource-matching.service.ts
+61. server/src/schemas/ai.schemas.ts
+
+Build an AI assistant called Resource Assistant.
+
+Example user prompt:
+
+"I need an oscilloscope for an electronics mini-project for three days. My budget is ₹800, and I can travel up to 10 km."
+
+The assistant should extract:
+
+* Resource category.
+* Required equipment.
+* Technical specifications.
+* Dates.
+* Budget.
+* Location preferences.
+* Intended use.
+* Eligibility requirements.
+
+Then match the requirements against real database records.
+
+AI responsibilities:
+
+* Understand natural-language requests.
+* Recommend matching resources.
+* Suggest technically plausible alternatives.
+* Explain why each result matches.
+* Identify missing information.
+* Summarise equipment requirements.
+* Help users understand access conditions.
+
+Important rules:
+
+* AI must not invent equipment listings.
+* AI must not invent prices or availability.
+* AI must not make final access or penalty decisions.
+* AI recommendations must be checked against actual resource records.
+* Technical alternatives must be labelled as suggestions requiring user or expert confirmation.
+* Do not send unnecessary personal data to the AI model.
+
+Implement matching in two stages:
+
+Stage 1:
+Use deterministic filters for dates, budget, category, technical requirements, location and eligibility.
+
+Stage 2:
+Use Gemini to interpret ambiguous requests, rank suitable database results and explain recommendations.
+
+If Gemini is unavailable, the core application must continue working through deterministic matching.
+
+## PHASE H: DIGITAL TRUST PASSPORT
+
+62. src/pages/trust/TrustPassportPage.tsx
+63. src/pages/trust/TrainingRequirementsPage.tsx
+64. src/pages/trust/VerificationStatusPage.tsx
+65. server/src/services/eligibility.service.ts
+
+Create a resource-specific eligibility system.
+
+User profiles may contain:
+
+* Institutional membership status.
+* Verified contact status.
+* Completed training records.
+* Approved qualifications.
+* Resource-specific authorisations.
+* Relevant unresolved incidents.
+* Outstanding returns.
+
+Do not create a simplistic public reputation score that automatically labels users as untrustworthy.
+
+Eligibility should be evaluated according to the requirements of the specific resource.
+
+Example:
+
+A 3D printer may require safety training.
+
+An electronics laboratory may require approved membership.
+
+A camera may require only a verified account and owner approval.
+
+Show users clear reasons when they cannot proceed.
+
+Use statuses such as:
+
+* Eligible.
+* Training Required.
+* Verification Pending.
+* Approval Required.
+* Not Eligible.
+
+Only authorised managers can approve official training or qualification records.
+
+## PHASE I: BOOKING AND FAIRSHARE
+
+66. src/pages/bookings/BookingDetailsPage.tsx
+67. src/pages/bookings/MyBookingsPage.tsx
+68. src/pages/bookings/BookingRequestsPage.tsx
+69. src/pages/bookings/WaitingListPage.tsx
+70. src/pages/bookings/BookingCalendarPage.tsx
+71. server/src/services/booking.service.ts
+72. server/src/services/fairshare.service.ts
+73. server/src/schemas/booking.schemas.ts
+
+Implement:
+
+* Booking requests.
+* Start and end dates.
+* Rental duration.
+* Rental price calculation.
+* Security deposit records.
+* Availability verification.
+* Booking approval.
+* Rejection with a reason.
+* Cancellation.
+* Extension requests.
+* Waiting lists.
+* Conflict detection.
+* Booking history.
+* Fair usage limits.
+
+The backend must prevent overlapping confirmed bookings for the same exclusive resource.
+
+Implement booking operations using Firestore transactions or another appropriate concurrency-safe approach.
+
+Do not rely only on frontend validation.
+
+FairShare should:
+
+* Respect published institutional rules.
+* Enforce configurable booking limits.
+* Support waiting lists.
+* Consider recent access when a policy explicitly requires it.
+* Provide understandable explanations.
+* Record allocation decisions.
+* Allow authorised human overrides with recorded reasons.
+
+Do not claim that a first-come-first-served queue is the only fair policy.
+
+Owners must retain control over their resources.
+
+## PHASE J: CHECK-IN, RETURN AND CONDITION EVIDENCE
+
+74. src/pages/lifecycle/CheckInPage.tsx
+75. src/pages/lifecycle/CheckOutPage.tsx
+76. src/pages/lifecycle/ReturnConfirmationPage.tsx
+77. src/pages/lifecycle/ConditionReportPage.tsx
+78. src/pages/lifecycle/IncidentReportPage.tsx
+79. src/pages/lifecycle/IncidentDetailsPage.tsx
+80. src/components/lifecycle/LifecycleTimeline.tsx
+81. server/src/services/lifecycle.service.ts
+82. server/src/services/incident.service.ts
+
+Support the following resource lifecycle:
+
+Available
+→ Booking Requested
+→ Approved
+→ Checked Out
+→ Returned Pending Inspection, when required
+→ Returned
+→ Available Again
+
+Alternative states:
+
+* Rejected.
+* Cancelled.
+* Overdue.
+* Under Maintenance.
+* Incident Under Review.
+* Temporarily Unavailable.
+
+Check-in requirements:
+
+* Verify the booking.
+* Confirm the responsible user.
+* Record the collection time.
+* Record the resource condition.
+* Record included accessories.
+* Upload optional condition photographs.
+
+Return requirements:
+
+* Verify the booking.
+* Record return time.
+* Record final condition.
+* Confirm returned accessories.
+* Record discrepancies.
+* Notify the owner when inspection is required.
+
+Damage reports must:
+
+* Include a description.
+* Support photographs.
+* Record who submitted the report.
+* Record timestamps.
+* Allow the other party to respond.
+* Support owner or manager review.
+* Record the final resolution.
+
+Never automatically assign blame or impose a penalty solely because AI identifies a difference between photographs.
+
+## PHASE K: RESOURCE MAINTENANCE
+
+83. src/pages/maintenance/MaintenanceDashboardPage.tsx
+84. src/pages/maintenance/ResourceMaintenancePage.tsx
+85. src/pages/maintenance/MaintenanceHistoryPage.tsx
+86. server/src/services/maintenance.service.ts
+
+Implement:
+
+* Fault reports.
+* Maintenance records.
+* Inspection status.
+* Maintenance dates.
+* Repair descriptions.
+* Authorised staff review.
+* Resource availability restrictions.
+
+A resource under maintenance must not be bookable unless an authorised manager explicitly clears it for use.
+
+Potentially dangerous equipment requires human approval before returning to service.
+
+## PHASE L: DASHBOARDS AND ANALYTICS
+
+87. src/pages/analytics/UtilisationDashboardPage.tsx
+88. src/pages/analytics/DemandInsightsPage.tsx
+89. src/pages/analytics/ImpactDashboardPage.tsx
+90. src/components/analytics/UtilisationChart.tsx
+91. src/components/analytics/DemandChart.tsx
+92. src/components/analytics/ImpactSummary.tsx
+93. server/src/services/analytics.service.ts
+
+Provide analytics for owners and administrators.
+
+Metrics:
+
+* Total registered resources.
+* Available resources.
+* Active bookings.
+* Completed bookings.
+* Unfulfilled equipment requests.
+* Most requested equipment.
+* Booking completion rate.
+* On-time return rate.
+* Resource utilisation.
+* Frequently requested missing instruments.
+* Maintenance incidents.
+* Cancellation rate.
+* Estimated purchase expenditure potentially avoided.
+
+Calculate utilisation using actual recorded availability and booking data.
+
+For example:
+
+Utilisation percentage =
+Booked hours / Available hours × 100
+
+Define the calculation period and exclude maintenance hours where appropriate.
+
+Estimated purchase expenditure avoided must be labelled as an estimate, not actual financial savings.
+
+Use real Firestore data for operational metrics.
+
+If demonstration data is shown, label it clearly as simulated.
+
+## PHASE M: NOTIFICATIONS
+
+94. src/pages/notifications/NotificationsPage.tsx
+95. server/src/services/notification.service.ts
+
+Implement in-app notifications for:
+
+* Booking requests.
+* Approval and rejection.
+* Waiting-list updates.
+* Booking reminders.
+* Return deadlines.
+* Overdue resources.
+* Extension decisions.
+* Equipment request matches.
+* Provider responses.
+* Incident reports.
+* Maintenance updates.
+
+Persist notifications in the database.
+
+If email notifications are added, use a configured email service through the backend. Do not pretend that an email was sent when no provider is configured.
+
+## PHASE N: ROLE-BASED ADMINISTRATION
+
+96. src/pages/admin/AdminDashboardPage.tsx
+97. src/pages/admin/UserManagementPage.tsx
+98. src/pages/admin/InstitutionManagementPage.tsx
+99. src/pages/admin/ResourceModerationPage.tsx
+100. src/pages/admin/IncidentReviewPage.tsx
+101. src/pages/admin/AuditLogPage.tsx
+102. server/src/services/audit.service.ts
+
+Roles:
+
+* Student or general user.
+* Resource owner.
+* Institution manager.
+* Administrator.
+
+Implement permissions for:
+
+* Resource creation and editing.
+* Booking approval.
+* User verification.
+* Training approval.
+* Resource moderation.
+* Maintenance management.
+* Incident review.
+* Audit-log access.
+
+A resource owner must not access another owner's private records without permission.
+
+Only authorised administrators may access platform-wide management functions.
+
+## PHASE O: BACKEND CORE
+
+103. server/src/index.ts
+104. server/src/app.ts
+105. server/src/config/env.ts
+106. server/src/config/firebase-admin.ts
+107. server/src/middleware/auth.middleware.ts
+108. server/src/middleware/error.middleware.ts
+109. server/src/middleware/validation.middleware.ts
+110. server/src/middleware/rate-limit.middleware.ts
+111. server/src/routes/health.routes.ts
+112. server/src/routes/resource.routes.ts
+113. server/src/routes/equipment-request.routes.ts
+114. server/src/routes/ai.routes.ts
+115. server/src/routes/booking.routes.ts
+116. server/src/routes/eligibility.routes.ts
+117. server/src/routes/lifecycle.routes.ts
+118. server/src/routes/incident.routes.ts
+119. server/src/routes/maintenance.routes.ts
+120. server/src/routes/notification.routes.ts
+121. server/src/routes/analytics.routes.ts
+122. server/src/routes/admin.routes.ts
+
+Create working API endpoints for the major application workflows.
+
+Use a consistent response structure:
+
+Success:
+{
+"success": true,
+"data": {},
+"message": "Operation completed successfully"
+}
+
+Failure:
+{
+"success": false,
+"error": {
+"code": "VALIDATION_ERROR",
+"message": "Please check the submitted information"
+}
+}
+
+Use suitable HTTP status codes.
+
+Validate all incoming requests.
+
+Implement appropriate authentication and authorisation for protected endpoints.
+
+Add server-side rate limiting for sensitive or expensive endpoints.
+
+Do not expose stack traces, credentials or internal secrets to users.
+
+If the Google AI Studio runtime uses a different server entry point, adapt this structure while keeping the separation of responsibilities.
+
+## PHASE P: DATABASE DESIGN
+
+123. server/src/repositories/user.repository.ts
+124. server/src/repositories/resource.repository.ts
+125. server/src/repositories/booking.repository.ts
+126. server/src/repositories/equipment-request.repository.ts
+127. server/src/repositories/incident.repository.ts
+128. server/src/repositories/audit.repository.ts
+129. server/src/repositories/notification.repository.ts
+130. server/src/schemas/resource.schemas.ts
+131. server/src/schemas/user.schemas.ts
+132. server/src/schemas/incident.schemas.ts
+
+Use Cloud Firestore as the primary persistent database.
+
+Create collections for:
+
+* users
+* institutions
+* resources
+* resourceAvailability
+* equipmentRequests
+* bookings
+* waitingLists
+* trainingRecords
+* conditionReports
+* incidents
+* maintenanceRecords
+* notifications
+* auditLogs
+
+Add suitable document references, timestamps and status fields.
+
+Avoid duplicating sensitive personal information across collections.
+
+Use server-generated timestamps for important events.
+
+Create and document the required Firestore security rules and indexes.
+
+Use Firebase Admin SDK for privileged backend operations when supported.
+
+Do not allow the browser to bypass backend authorisation through direct database writes.
+
+If client-side Firestore access is enabled, restrict it with security rules and validate all permissions.
+
+Store uploaded files securely and restrict access to authorised users.
+
+## PHASE Q: TESTING AND DEMONSTRATION DATA
+
+133. tests/booking.test.ts
+134. tests/fairshare.test.ts
+135. tests/equipment-request.test.ts
+136. tests/eligibility.test.ts
+137. tests/lifecycle.test.ts
+138. tests/authorisation.test.ts
+
+Use the test runner supported by the project.
+
+Test:
+
+* Successful registration and login.
+* Resource creation.
+* Resource search.
+* Equipment requests with no existing match.
+* Matching against registered resources.
+* Booking approval and rejection.
+* Double-booking prevention.
+* FairShare waiting-list processing.
+* Eligibility failures.
+* Check-in and return.
+* Condition reporting.
+* Incident submission.
+* Maintenance restrictions.
+* Role-based permissions.
+* AI service failure handling.
+
+Create an optional development-only seed script or seed interface for fictional demonstration data.
+
+Never expose an unrestricted public endpoint that creates administrator accounts or resets production data.
+
+All seed data must be clearly labelled as fictional.
+
+---
+
+# 4. API KEY AND EXTERNAL SERVICE REQUIREMENTS
+
+The application should use real API integrations only where they add value.
+
+## A. Gemini API
+
+Use the Gemini API for:
+
+* Natural-language equipment search.
+* Alternative resource recommendations.
+* Requirement extraction.
+* Recommendation explanations.
+* Summarisation of incident descriptions for human review.
+
+Use the server-side secret:
+
+GEMINI_API_KEY
+
+Google AI Studio may configure this secret automatically when Gemini is enabled.
+
+If it is not configured, instruct the developer to add it through the Google AI Studio Secrets settings.
+
+Never ask users to paste the key into a frontend form.
+
+Never expose the key in:
+
+* React components.
+* Browser JavaScript.
+* Public environment variables.
+* GitHub commits.
+* API responses.
+* Client-visible logs.
+
+Use a currently supported Gemini model available to the project. Do not hardcode an outdated model name without checking availability.
+
+Implement timeouts, rate limits, error handling and graceful fallback.
+
+## B. Firebase
+
+Use Firebase Authentication and Cloud Firestore.
+
+Complete the required Firebase project setup when prompted by Google AI Studio.
+
+Use Firebase Storage for private condition-report photographs if configured.
+
+Do not put Firebase Admin credentials into frontend code.
+
+## C. Optional maps integration
+
+Do not require a maps API key for the core application.
+
+Initially support text-based locations, institution addresses and location filters.
+
+If Google Maps is integrated later, request the necessary API key through secure configuration, restrict the key to the intended APIs and apply appropriate usage limits.
+
+Do not invent exact distances when reliable coordinates are unavailable.
+
+## D. Optional external provider discovery
+
+Build the application so an authorised external provider-discovery service can be integrated later.
+
+Do not assume that a general search API, maps API or Gemini can provide verified rental inventory.
+
+Do not scrape arbitrary rental websites or invent available equipment.
+
+If no external provider API is configured, use registered ResourceLoop listings, participating institutions and community requests.
+
+## E. Payments
+
+For the hackathon MVP, implement rental cost calculations and payment-status records.
+
+Do not process real money unless a payment provider is explicitly configured.
+
+Do not collect or store card numbers, CVVs or banking passwords.
+
+Label simulated transactions clearly.
+
+Keep the booking lifecycle functional without requiring a payment gateway.
+
+---
+
+# 5. REQUIRED DATABASE ENTITIES
+
+Create appropriate TypeScript interfaces for these records.
+
+## User
+
+* id
+* displayName
+* email
+* institutionId
+* role
+* verificationStatus
+* trainingRecords
+* createdAt
+* updatedAt
+
+## Institution
+
+* id
+* name
+* address
+* contactInformation
+* verificationStatus
+* resourceSharingPolicy
+* createdAt
+
+## Resource
+
+* id
+* ownerId
+* institutionId
+* name
+* category
+* description
+* specifications
+* images
+* location
+* rentalPrice
+* securityDeposit
+* availability
+* condition
+* maintenanceStatus
+* eligibilityRequirements
+* sharingPolicy
+* createdAt
+* updatedAt
+
+## EquipmentRequest
+
+* id
+* requesterId
+* equipmentName
+* category
+* technicalRequirements
+* purpose
+* quantity
+* startDate
+* endDate
+* budget
+* preferredLocation
+* status
+* matchedResourceIds
+* providerResponses
+* createdAt
+* updatedAt
+
+## Booking
+
+* id
+* resourceId
+* requesterId
+* ownerId
+* startDate
+* endDate
+* rentalCost
+* securityDeposit
+* status
+* eligibilityResult
+* approvalReason
+* checkInAt
+* returnedAt
+* createdAt
+* updatedAt
+
+## ConditionReport
+
+* id
+* bookingId
+* resourceId
+* submittedBy
+* reportType
+* checklist
+* photoReferences
+* notes
+* createdAt
+
+## Incident
+
+* id
+* bookingId
+* resourceId
+* reportedBy
+* incidentType
+* description
+* evidenceReferences
+* reviewStatus
+* ownerResponse
+* resolution
+* resolvedBy
+* createdAt
+* updatedAt
+
+## MaintenanceRecord
+
+* id
+* resourceId
+* issueDescription
+* status
+* assignedManagerId
+* maintenanceNotes
+* completedAt
+* createdAt
+
+## Notification
+
+* id
+* userId
+* type
+* title
+* message
+* relatedEntityId
+* readAt
+* createdAt
+
+## AuditLog
+
+* id
+* actorId
+* action
+* entityType
+* entityId
+* previousStatus
+* newStatus
+* reason
+* timestamp
+
+Treat audit records as append-only application records. Restrict modifications and record corrections as additional events.
+
+Use server-side validation for every entity.
+
+---
+
+# 6. UI/UX DESIGN REQUIREMENTS
+
+Create a premium, modern SaaS dashboard rather than a generic template.
+
+The interface should look like a polished technology startup product suitable for a national-level hackathon presentation.
+
+## Design direction
+
+Use a modern, minimal visual system:
+
+* Deep navy or charcoal text.
+* Light neutral backgrounds.
+* White cards.
+* A restrained teal or emerald accent.
+* Clear typography.
+* Generous spacing.
+* Subtle shadows.
+* Consistent corner radii.
+* Clear visual hierarchy.
+* High-quality equipment imagery.
+* Accessible colour contrast.
+
+Avoid:
+
+* Excessive gradients.
+* Unnecessary glassmorphism.
+* Random emoji icons.
+* Oversized empty hero sections.
+* Too many animations.
+* Dense, cluttered dashboards.
+* Generic AI-generated filler text.
+* Fake statistics presented as real data.
+
+Use Lucide icons consistently.
+
+Use Framer Motion only for purposeful transitions and subtle interaction feedback.
+
+## Landing page
+
+Create a professional landing page with:
+
+* ResourceLoop logo or text-based brand mark.
+* Navigation.
+* Hero section.
+* Search bar for equipment.
+* Primary CTA: Explore Resources.
+* Secondary CTA: Request Missing Equipment.
+* How It Works section.
+* Key platform benefits.
+* Resource categories.
+* SmartFind feature explanation.
+* Trust and safety section.
+* Resource utilisation benefits.
+* Footer.
+
+Use a clear headline:
+
+"Find the Resources You Need. Share What You Have."
+
+Supporting text:
+
+"Discover equipment, request hard-to-find instruments and access shared resources through one trusted platform."
+
+## Application dashboard
+
+Include:
+
+* Collapsible desktop sidebar.
+* Responsive mobile navigation.
+* Top navigation bar.
+* Global search.
+* Notifications.
+* User profile.
+* Main content area.
+* Breadcrumbs where useful.
+* Loading and error states.
+
+## Student dashboard
+
+Show:
+
+* Upcoming bookings.
+* Active rentals.
+* Return deadlines.
+* Equipment requests.
+* Suggested resources.
+* Booking history.
+* Notifications.
+* Trust Passport status.
+
+## Owner dashboard
+
+Show:
+
+* Listed resources.
+* Pending booking requests.
+* Current rentals.
+* Overdue returns.
+* Condition reports.
+* Maintenance issues.
+* Resource utilisation.
+* Unmet equipment requests.
+
+## Admin dashboard
+
+Show:
+
+* Resource inventory.
+* User and institution management.
+* Booking overview.
+* Equipment demand.
+* Incident review queue.
+* Audit history.
+* Resource utilisation charts.
+
+## SmartFind page
+
+Make this feature visually distinctive.
+
+Include:
+
+* Large natural-language search box.
+* Equipment category filters.
+* Budget input.
+* Date selection.
+* Location preference.
+* Technical requirements.
+* Search results.
+* Alternative recommendations.
+* Community request button.
+* Request status tracking.
+* Helpful empty states when nothing matches.
+
+When no match exists, display:
+
+"No suitable resource was found in the current listings. Create a request and let registered providers know what you need."
+
+Do not show a false promise that a provider will definitely be found.
+
+---
+
+# 7. FUNCTIONAL REQUIREMENTS
+
+Every visible action must have a defined behaviour.
+
+Examples:
+
+* Search must query actual data.
+* Filters must change results.
+* Forms must validate input.
+* Resource creation must save to the database.
+* Booking requests must persist.
+* Approval must update booking status.
+* Rejection must record a reason.
+* Waiting lists must persist.
+* Check-in must record an event.
+* Return must record an event.
+* Condition reports must persist.
+* Image uploads must store files securely.
+* Equipment requests must persist.
+* Matching must use real listings.
+* Notifications must be saved.
+* Dashboard metrics must be calculated from data.
+* Protected pages must enforce authentication.
+* Role-specific actions must be enforced on the backend.
+
+Use loading indicators during network operations.
+
+Show meaningful success and error messages.
+
+Prevent duplicate submissions.
+
+Handle empty, loading, offline and failure states gracefully.
+
+Do not implement fake functionality behind decorative buttons.
+
+If an external integration has not been configured, disable or clearly label that integration instead of pretending it works.
+
+---
+
+# 8. SECURITY AND PRIVACY REQUIREMENTS
+
+Implement security from the beginning.
+
+Requirements:
+
+* Server-side role verification.
+* Protected API routes.
+* Input validation.
+* Access control for each resource and booking.
+* Secure file upload handling.
+* Firestore security rules.
+* Rate limiting for sensitive operations.
+* Safe error messages.
+* Server-side API secrets.
+* No hardcoded credentials.
+* No public exposure of verification documents.
+* No public exposure of private incident evidence.
+* Minimal collection of personal data.
+* Audit logs for important actions.
+
+Never use frontend-only role checks as the sole security control.
+
+Never allow users to approve their own restricted access when an authorised owner or manager is required.
+
+Never let AI autonomously impose penalties, determine legal liability or override institutional safety requirements.
+
+---
+
+# 9. DEMONSTRATION DATA
+
+Provide an optional development-only seed process for the following fictional resources:
+
+1. Arduino Uno development kit.
+2. Raspberry Pi development kit.
+3. Digital oscilloscope.
+4. Thermal imaging camera.
+5. DSLR camera.
+6. Tripod and microphone kit.
+7. Portable projector.
+8. GPU workstation.
+9. 3D printer.
+10. CNC workshop access.
+11. Spectrum analyser.
+12. Digital multimeter.
+13. Logic analyser.
+14. Soldering station.
+15. Drone development kit.
+16. Portable sound system.
+17. Engineering graphics tools.
+18. High-resolution document scanner.
+19. Laboratory power supply.
+20. Meeting room or project workspace.
+
+Include a mixture of:
+
+* Available resources.
+* Resources requiring training.
+* Resources awaiting approval.
+* Resources under maintenance.
+* Example bookings.
+* Example equipment requests with no match.
+* Example incident records.
+
+Mark all fictional providers, availability, pricing and metrics as demonstration data.
+
+Do not represent fictional resources as actual inventory at a real college or rental shop.
+
+Create at least one complete sample transaction that a judge can follow from resource listing to return.
+
+---
+
+# 10. REQUIRED DEMONSTRATION SCENARIO
+
+Make the following workflow easy to demonstrate.
+
+Scenario: A student needs a thermal imaging camera for a college mini-project.
+
+Step 1:
+The student logs in.
+
+Step 2:
+The student searches for a thermal imaging camera.
+
+Step 3:
+If a suitable resource exists in the demo database, the student sees the available listing.
+
+Step 4:
+If no suitable resource exists, the student creates an equipment request with the required dates, budget and specifications.
+
+Step 5:
+The matching service searches registered resources.
+
+Step 6:
+If a suitable resource is found, the student sees the match and its availability status.
+
+Step 7:
+The student requests a booking.
+
+Step 8:
+The system checks eligibility and booking conflicts.
+
+Step 9:
+The owner approves or rejects the booking.
+
+Step 10:
+The student checks out the equipment and records its initial condition.
+
+Step 11:
+The student returns the equipment and submits the final condition report.
+
+Step 12:
+The owner reviews the return.
+
+Step 13:
+The system records the transaction history.
+
+Step 14:
+The dashboards update using the saved transaction data.
+
+Also support the no-match scenario, where the request remains open and a provider can respond later.
+
+The demo must not require manual database editing between steps.
+
+---
+
+# 11. PERFORMANCE AND QUALITY
+
+Implement:
+
+* Pagination for long resource lists.
+* Efficient database queries.
+* Debounced search where useful.
+* Reusable components.
+* Strict TypeScript types.
+* Appropriate indexes.
+* Consistent error handling.
+* Form validation.
+* Responsive layouts.
+* Accessible interactive elements.
+* Useful empty states.
+* Reasonable loading performance.
+
+Avoid unnecessary dependencies.
+
+Do not add complex microservices or infrastructure that is not required for the hackathon.
+
+Prefer a well-structured monolithic backend over a distributed architecture.
+
+---
+
+# 12. IMPLEMENTATION WORKFLOW
+
+Follow this sequence when generating the application.
+
+Stage 1:
+Create the project structure, configuration and visual design system.
+
+Stage 2:
+Build the landing page, application layout and responsive navigation.
+
+Stage 3:
+Configure Firebase Authentication and Firestore.
+
+Stage 4:
+Implement user profiles and role-based access.
+
+Stage 5:
+Implement resource creation, search and availability.
+
+Stage 6:
+Implement equipment requests and SmartFind matching.
+
+Stage 7:
+Integrate Gemini on the server side.
+
+Stage 8:
+Implement eligibility verification and booking workflows.
+
+Stage 9:
+Implement FairShare and waiting lists.
+
+Stage 10:
+Implement check-in, return, condition reporting and incident handling.
+
+Stage 11:
+Implement maintenance management and notifications.
+
+Stage 12:
+Implement analytics, administration and audit history.
+
+Stage 13:
+Create demonstration data and the full demo scenario.
+
+Stage 14:
+Run the build and tests.
+
+Stage 15:
+Fix compilation errors, broken imports, routing issues, security problems and incomplete workflows.
+
+Stage 16:
+Verify the complete end-to-end demonstration.
+
+Do not stop after any intermediate stage if further implementation is possible.
+
+If the project is too large to generate in one pass, create the core application first, preserve a consistent file structure, and continue through the remaining stages without replacing working functionality.
+
+---
+
+# 13. FINAL ACCEPTANCE CRITERIA
+
+The project is not complete until all the following are satisfied:
+
+1. The application builds successfully.
+2. The landing page is professionally designed.
+3. Authentication works with the configured Firebase project.
+4. User roles are enforced by the backend.
+5. Resources can be created and persisted.
+6. Resource search works.
+7. Availability is checked correctly.
+8. Users can submit equipment requests.
+9. SmartFind matches requests against registered resources.
+10. Gemini integration works when the secret is configured.
+11. The application still works when Gemini is unavailable.
+12. Booking requests persist.
+13. Owners can approve and reject requests.
+14. Conflicting bookings are prevented.
+15. Waiting lists function.
+16. Eligibility requirements are checked.
+17. Check-in and return records persist.
+18. Condition reports can be submitted.
+19. Incidents can be reported and reviewed.
+20. Maintenance restrictions affect availability.
+21. Notifications persist.
+22. Audit records are generated.
+23. Dashboards use real saved data.
+24. Fictional demonstration data is labelled.
+25. No secrets are exposed in client-side code.
+26. The application works on desktop and mobile.
+27. The main demo can be completed without manually editing the database.
+28. The README explains configuration, setup, testing and deployment.
+
+When finished, provide:
+
+* A summary of implemented features.
+* The actual file tree.
+* Any services that require configuration.
+* Any API secrets that must be added.
+* Instructions for enabling Firebase.
+* Instructions for testing the demo.
+* Instructions for deploying the application.
+* A list of known limitations.
+
+Begin building ResourceLoop now.
+
+Prioritise a polished interface, a reliable backend, real persistent data and a complete end-to-end workflow over decorative complexity.

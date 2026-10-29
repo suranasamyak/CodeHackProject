@@ -1,0 +1,253 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with role, institution, and verification status",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 100 },
+        "institutionId": { "type": "string", "maxLength": 64 },
+        "institutionName": { "type": "string", "maxLength": 100 },
+        "role": { "type": "string", "enum": ["student", "owner", "manager", "admin"] },
+        "verificationStatus": { "type": "string", "enum": ["verified", "pending", "unverified"] },
+        "department": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 20 },
+        "bio": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["displayName", "email", "role"]
+    },
+    "Institution": {
+      "title": "Institution",
+      "description": "Participating college, university, or research laboratory",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 150 },
+        "address": { "type": "string", "maxLength": 250 },
+        "contactEmail": { "type": "string", "maxLength": 100 },
+        "verificationStatus": { "type": "string", "enum": ["verified", "pending"] },
+        "resourceSharingPolicy": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "contactEmail"]
+    },
+    "Resource": {
+      "title": "Resource",
+      "description": "Equipment, instrument, workspace or tool available for booking or rental",
+      "type": "object",
+      "properties": {
+        "ownerId": { "type": "string", "maxLength": 128 },
+        "ownerName": { "type": "string", "maxLength": 100 },
+        "ownerEmail": { "type": "string", "maxLength": 100 },
+        "institutionId": { "type": "string", "maxLength": 64 },
+        "institutionName": { "type": "string", "maxLength": 100 },
+        "name": { "type": "string", "maxLength": 150 },
+        "category": { "type": "string", "maxLength": 64 },
+        "description": { "type": "string", "maxLength": 1500 },
+        "specifications": { "type": "string", "maxLength": 1000 },
+        "imageUrl": { "type": "string", "maxLength": 500 },
+        "location": { "type": "string", "maxLength": 150 },
+        "rentalPricePerDay": { "type": "number" },
+        "securityDeposit": { "type": "number" },
+        "availability": { "type": "string", "enum": ["available", "booked", "maintenance", "restricted"] },
+        "condition": { "type": "string", "enum": ["excellent", "good", "fair", "needs_service"] },
+        "maintenanceStatus": { "type": "string", "enum": ["operational", "scheduled", "in_repair"] },
+        "trainingRequired": { "type": "boolean" },
+        "trainingCourseName": { "type": "string", "maxLength": 100 },
+        "approvalRequired": { "type": "boolean" },
+        "fairShareMaxDays": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["name", "category", "ownerId", "rentalPricePerDay", "availability"]
+    },
+    "EquipmentRequest": {
+      "title": "EquipmentRequest",
+      "description": "SmartFind request for missing or unlisted equipment",
+      "type": "object",
+      "properties": {
+        "requesterId": { "type": "string", "maxLength": 128 },
+        "requesterName": { "type": "string", "maxLength": 100 },
+        "equipmentName": { "type": "string", "maxLength": 150 },
+        "category": { "type": "string", "maxLength": 64 },
+        "technicalRequirements": { "type": "string", "maxLength": 1000 },
+        "purpose": { "type": "string", "maxLength": 500 },
+        "quantity": { "type": "number" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "maxBudget": { "type": "number" },
+        "preferredLocation": { "type": "string", "maxLength": 150 },
+        "urgency": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+        "status": { "type": "string", "enum": ["open", "potential_match", "awaiting_provider", "matched", "fulfilled", "closed"] },
+        "matchedResourceId": { "type": "string", "maxLength": 128 },
+        "providerResponse": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["requesterId", "equipmentName", "category", "status"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Resource rental or booking reservation lifecycle",
+      "type": "object",
+      "properties": {
+        "resourceId": { "type": "string", "maxLength": 128 },
+        "resourceName": { "type": "string", "maxLength": 150 },
+        "requesterId": { "type": "string", "maxLength": 128 },
+        "requesterName": { "type": "string", "maxLength": 100 },
+        "requesterEmail": { "type": "string", "maxLength": 100 },
+        "ownerId": { "type": "string", "maxLength": 128 },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "totalDays": { "type": "number" },
+        "rentalCost": { "type": "number" },
+        "securityDeposit": { "type": "number" },
+        "purpose": { "type": "string", "maxLength": 500 },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected", "checked_out", "returned_pending_inspection", "completed", "cancelled"] },
+        "rejectionReason": { "type": "string", "maxLength": 500 },
+        "checkInAt": { "type": "string" },
+        "checkOutAt": { "type": "string" },
+        "returnedAt": { "type": "string" },
+        "initialCondition": { "type": "string", "maxLength": 500 },
+        "returnCondition": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["resourceId", "requesterId", "ownerId", "startDate", "endDate", "status"]
+    },
+    "ConditionReport": {
+      "title": "ConditionReport",
+      "description": "Pre-checkout and return condition documentation with accessory checklist",
+      "type": "object",
+      "properties": {
+        "bookingId": { "type": "string", "maxLength": 128 },
+        "resourceId": { "type": "string", "maxLength": 128 },
+        "submittedBy": { "type": "string", "maxLength": 128 },
+        "submitterName": { "type": "string", "maxLength": 100 },
+        "reportType": { "type": "string", "enum": ["check_out", "return"] },
+        "overallCondition": { "type": "string", "enum": ["pristine", "good", "wear_and_tear", "damaged"] },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "accessoriesConfirmed": { "type": "boolean" },
+        "discrepancies": { "type": "string", "maxLength": 500 },
+        "photoUrls": { "type": "string", "maxLength": 1000 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["bookingId", "resourceId", "submittedBy", "reportType"]
+    },
+    "Incident": {
+      "title": "Incident",
+      "description": "Reported damage, malfunction, or dispute during resource use",
+      "type": "object",
+      "properties": {
+        "bookingId": { "type": "string", "maxLength": 128 },
+        "resourceId": { "type": "string", "maxLength": 128 },
+        "resourceName": { "type": "string", "maxLength": 150 },
+        "reportedBy": { "type": "string", "maxLength": 128 },
+        "reporterName": { "type": "string", "maxLength": 100 },
+        "incidentType": { "type": "string", "enum": ["damage", "malfunction", "missing_accessory", "late_return", "dispute"] },
+        "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+        "description": { "type": "string", "maxLength": 1500 },
+        "reviewStatus": { "type": "string", "enum": ["under_review", "investigating", "resolved", "dismissed"] },
+        "ownerResponse": { "type": "string", "maxLength": 1000 },
+        "resolution": { "type": "string", "maxLength": 1000 },
+        "resolvedBy": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["resourceId", "reportedBy", "incidentType", "description", "reviewStatus"]
+    },
+    "MaintenanceRecord": {
+      "title": "MaintenanceRecord",
+      "description": "Service, repair, calibration, or inspection log for equipment",
+      "type": "object",
+      "properties": {
+        "resourceId": { "type": "string", "maxLength": 128 },
+        "resourceName": { "type": "string", "maxLength": 150 },
+        "issueDescription": { "type": "string", "maxLength": 1000 },
+        "status": { "type": "string", "enum": ["scheduled", "in_progress", "completed", "cancelled"] },
+        "technician": { "type": "string", "maxLength": 100 },
+        "serviceCost": { "type": "number" },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "completedAt": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["resourceId", "issueDescription", "status"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "In-app notifications for bookings, matches, reminders, and alerts",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 150 },
+        "message": { "type": "string", "maxLength": 500 },
+        "type": { "type": "string", "enum": ["booking", "match", "approval", "return_reminder", "incident", "maintenance", "system"] },
+        "link": { "type": "string", "maxLength": 200 },
+        "isRead": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "title", "message", "type"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Append-only immutable record of critical state transitions and security events",
+      "type": "object",
+      "properties": {
+        "actorId": { "type": "string", "maxLength": 128 },
+        "actorName": { "type": "string", "maxLength": 100 },
+        "action": { "type": "string", "maxLength": 100 },
+        "entityType": { "type": "string", "maxLength": 64 },
+        "entityId": { "type": "string", "maxLength": 128 },
+        "previousStatus": { "type": "string", "maxLength": 64 },
+        "newStatus": { "type": "string", "maxLength": 64 },
+        "details": { "type": "string", "maxLength": 500 },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["actorId", "action", "entityType", "entityId", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and credentials"
+    },
+    "/institutions/{institutionId}": {
+      "schema": "Institution",
+      "description": "Participating academic and research institutions"
+    },
+    "/resources/{resourceId}": {
+      "schema": "Resource",
+      "description": "Catalog of shareable equipment and resources"
+    },
+    "/equipmentRequests/{requestId}": {
+      "schema": "EquipmentRequest",
+      "description": "SmartFind equipment demand listings"
+    },
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Resource booking reservations and rental lifecycle"
+    },
+    "/conditionReports/{reportId}": {
+      "schema": "ConditionReport",
+      "description": "Check-out and return condition checklists and evidence"
+    },
+    "/incidents/{incidentId}": {
+      "schema": "Incident",
+      "description": "Damage, malfunction, or dispute reports"
+    },
+    "/maintenanceRecords/{recordId}": {
+      "schema": "MaintenanceRecord",
+      "description": "Equipment maintenance logs and servicing history"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "User in-app notifications and alerts"
+    },
+    "/auditLogs/{logId}": {
+      "schema": "AuditLog",
+      "description": "System-wide immutable audit trail"
+    }
+  }
+}
